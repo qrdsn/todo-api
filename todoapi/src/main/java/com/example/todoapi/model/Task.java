@@ -10,7 +10,6 @@ public class Task {
     private Long id;
 
     private String description;
-    private boolean completed;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -31,14 +30,6 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public boolean isCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
     }
 
     public User getUser() {

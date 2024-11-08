@@ -1,5 +1,6 @@
 package com.example.todoapi.controller;
 
+import com.example.todoapi.model.Task;
 import com.example.todoapi.model.User;
 import com.example.todoapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +28,14 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
 
-    // Retrieve all users (restricted to admin roles or higher)
+    // Retrieve all users
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
     }
 
-    // Retrieve a specific user by ID
+    // Retrieve a user by ID
     @GetMapping("/users/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         User user = userService.getUserById(id);
@@ -45,7 +46,7 @@ public class UserController {
         }
     }
 
-    // Update a user’s details (e.g., role)
+    // Update an existing user
     @PutMapping("/users/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
         User updatedUser = userService.updateUser(id, user);
@@ -56,7 +57,7 @@ public class UserController {
         }
     }
 
-    // Delete a user (restricted to admins or super users)
+    // Delete a user by ID
     @DeleteMapping("/users/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         boolean isDeleted = userService.deleteUser(id);

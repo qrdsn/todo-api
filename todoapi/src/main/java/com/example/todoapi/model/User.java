@@ -1,5 +1,7 @@
 package com.example.todoapi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class User {
     private Company company;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonBackReference  // Prevent infinite recursion when serializing tasks
     private List<Task> tasks;
 
     // Getters and Setters

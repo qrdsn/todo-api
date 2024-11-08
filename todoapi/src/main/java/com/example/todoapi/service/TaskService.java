@@ -36,7 +36,6 @@ public class TaskService {
         Task task = getTaskById(id);
         if (task != null) {
             task.setDescription(updatedTask.getDescription());
-            task.setCompleted(updatedTask.isCompleted());
         }
         return task;
     }
